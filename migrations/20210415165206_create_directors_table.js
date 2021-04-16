@@ -12,9 +12,9 @@ exports.up = function(knex) {
 };
 
 exports.down = function(knex) {
-  return knex.table('movies', table => {
+return knex.schema.table('movies', table => {
     table.dropColumn('director_id');
   })
-  .then(knex.schema.dropTableIfExists('directors'));
-  
+  .dropTableIfExists('directors');
+
 };
