@@ -1,7 +1,9 @@
 const express = require('express');
 const app = express();
-const PORT = 3000;
-const knex = require('knex')(require('./knexfile')['development']);
+const dotenv = require('dotenv');
+dotenv.config();
+// const PORT = 3000;
+const knex = require('knex')(require('./knexfile')[process.env.NODE_ENV]);
 
 
 app.use(express.json());
@@ -19,6 +21,6 @@ app.get('/movies', (req, res) => {
 });
 
 
-app.listen(PORT, () => {
-  console.log(`The Express server is running on port ${PORT}`);
+app.listen(process.env.PORT, () => {
+  console.log(`The Express server is running on port ${process.env.PORT}`);
 });
